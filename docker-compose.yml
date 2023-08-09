@@ -25,9 +25,9 @@ services:
     ports:
       - "172.17.0.1:9930:1337"
     depends_on:
-      - strapiDB
+      - db
 
-  strapiDB:
+  db:
     image: elestio/postgres:latest
     restart: always
     environment:
@@ -35,7 +35,6 @@ services:
       POSTGRES_USER: ${DATABASE_USERNAME}
       POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
       PGDATA: /var/lib/postgresql/data
-      TS_TUNE_MAX_CONNS: 100
     volumes:
       - ./pgdata:/var/lib/postgresql/data
     ports:
