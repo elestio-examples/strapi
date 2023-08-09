@@ -12,7 +12,7 @@ Deploy Strapi with CI/CD on Elestio
 
 You can open Strapi UI here:
 
-    URL: https://[CI_CD_DOMAIN]
+    URL: https://[CI_CD_DOMAIN]/admin
     email: [ADMIN_EMAIL]
     password: [ADMIN_PASSWORD]
 
