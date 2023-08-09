@@ -4,7 +4,7 @@
 
 Deploy Strapi with CI/CD on Elestio
 
-<img src="strapi.jpg" style='width: 100%;'/>
+<img src="strapi.png" style='width: 100%;'/>
 <br/>
 <br/>
 

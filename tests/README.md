@@ -10,7 +10,7 @@
 
 [Strapi](https://github.com/strapi/strapi-docker) is an open-source, fully customizable, and extensible JavaScript-based headless CMS.
 
-<img src="https://github.com/elestio-examples/strapi/raw/main/strapi.jpg" alt="strapi" width="800">
+<img src="https://github.com/elestio-examples/strapi/raw/main/strapi.png" alt="strapi" width="800">
 
 Deploy a <a target="_blank" href="https://elest.io/open-source/strapi">fully managed Strapi</a> on <a target="_blank" href="https://elest.io/">elest.io</a> if you want to create JavaScript APIs that are quick and easy to manage.
 

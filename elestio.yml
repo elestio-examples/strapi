@@ -69,7 +69,7 @@ config:
   buildDir: "/"
   runCommand: "docker-compose up -d"
   icon: ""
-  screenshot: "strapi.jpg"
+  screenshot: "strapi.png"
 lifeCycleConfig:
   preInstallCommand: "./scripts/preInstall.sh"
   postInstallCommand: "./scripts/postInstall.sh"
