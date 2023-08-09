@@ -15,3 +15,9 @@ You can open Strapi UI here:
     URL: https://[CI_CD_DOMAIN]
     email: [ADMIN_EMAIL]
     password: [ADMIN_PASSWORD]
+
+You can open pgAdmin web UI here:
+
+    URL: https://[CI_CD_DOMAIN]:8443
+    email: [ADMIN_EMAIL]
+    password: [ADMIN_PASSWORD]

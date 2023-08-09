@@ -7,6 +7,20 @@ ports:
     public: true
     path: "/"
     isAuth: false
+  - protocol: "HTTPS"
+    targetProtocol: "HTTP"
+    listeningPort: "8443"
+    targetPort: "8089"
+    targetIP: "172.17.0.1"
+    public: true
+    path: "/"
+    isAuth: false
+  - protocol: "TCP"
+    targetProtocol: "TCP"
+    listeningPort: "24534"
+    targetIP: "172.17.0.1"
+    targetPort: "5432"
+    public: true
 environments:
   - key: "ADMIN_PASSWORD"
     value: "random_password"
@@ -23,21 +37,21 @@ environments:
   - key: "SMTP_FROM_EMAIL"
     value: "[DOMAIN]@vm.elestio.app"
   - key: "DATABASE_CLIENT"
-    value: "mysql"
+    value: "postgres"
   - key: "DATABASE_PORT"
-    value: "3306"
+    value: "5432"
   - key: "DATABASE_NAME"
     value: "strapi"
   - key: "DATABASE_USERNAME"
     value: "strapi"
   - key: "DATABASE_PASSWORD"
-    value: "ramdom_password"
+    value: "random_password"
   - key: "JWT_SECRET"
-    value: "ramdom_password"
+    value: "random_password"
   - key: "ADMIN_JWT_SECRET"
-    value: "ramdom_password"
+    value: "random_password"
   - key: "APP_KEYS"
-    value: "ramdom_password"
+    value: "random_password"
   - key: "NODE_ENV"
     value: "production"
 
@@ -63,3 +77,8 @@ webUI:
     label: "Strapi Admin"
     login: "[ADMIN_EMAIL]"
     password: "[ADMIN_PASSWORD]"
+
+  - url: "https://[CI_CD_DOMAIN]:8443"
+    label: "PgAdmin"
+    login: "[ADMIN_EMAIL]"
+    password: "[ADMIN_EMAIL]"
