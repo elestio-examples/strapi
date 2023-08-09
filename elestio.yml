@@ -17,9 +17,9 @@ ports:
     isAuth: false
   - protocol: "TCP"
     targetProtocol: "TCP"
-    listeningPort: "24534"
+    listeningPort: "24540"
     targetIP: "172.17.0.1"
-    targetPort: "5432"
+    targetPort: "24538"
     public: true
 environments:
   - key: "ADMIN_PASSWORD"

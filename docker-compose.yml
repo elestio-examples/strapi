@@ -39,7 +39,7 @@ services:
     volumes:
       - ./pgdata:/var/lib/postgresql/data
     ports:
-      - "172.17.0.1:24534:5432"
+      - "172.17.0.1:24538:5432"
 
   pgadmin4:
     image: dpage/pgadmin4:latest
