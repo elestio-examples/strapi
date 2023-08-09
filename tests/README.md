@@ -36,6 +36,8 @@ Copy the .env file from tests folder to the project directory
 
 Edit the .env file with your own values.
 
+Install your plugins with `yarn` command on `entrypoint.sh` file.
+
 Create data folders with correct permissions
 
 Run the project with the following command
@@ -50,13 +52,13 @@ Here are some example snippets to help you get started creating a container.
 
     version: "3"
     services:
-    strapi:
-        image: elestio4test/strapi:${SOFTWARE_VERSION_TAG}
-        restart: always
-        env_file: .env
-        environment:
+        strapi:
+            image: elestio4test/strapi:latest
+            restart: always
+            env_file: .env
+            environment:
             DATABASE_CLIENT: ${DATABASE_CLIENT}
-            DATABASE_HOST: ${DATABASE_HOST}
+            DATABASE_HOST: db
             DATABASE_PORT: ${DATABASE_PORT}
             DATABASE_NAME: ${DATABASE_NAME}
             DATABASE_USERNAME: ${DATABASE_USERNAME}
@@ -65,49 +67,55 @@ Here are some example snippets to help you get started creating a container.
             ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET}
             APP_KEYS: ${APP_KEYS}
             NODE_ENV: ${NODE_ENV}
-        volumes:
+            volumes:
             - ./config:/opt/app/config
             - ./src:/opt/app/src
-            - ./package.json:/opt/package.json
-            - ./yarn.lock:/opt/yarn.lock
+            # - ./package.json:/opt/package.json
+            # - ./yarn.lock:/opt/yarn.lock
             - ./.env:/opt/app/.env
             - ./public/uploads:/opt/app/public/uploads
-        ports:
+            - ./entrypoint.sh:/opt/app/entrypoint.sh
+            ports:
             - "172.17.0.1:9930:1337"
-        depends_on:
-            - strapiDB
+            depends_on:
+            - db
 
-    strapiDB:
-        restart: always
-        env_file: .env
-        image: elestio/mysql:${SOFTWARE_VERSION_TAG}
-        command: --default-authentication-plugin=mysql_native_password
-        environment:
-            MYSQL_USER: ${MYSQL_DATABASE_USERNAME}
-            MYSQL_ROOT_PASSWORD: ${DATABASE_PASSWORD}
-            MYSQL_PASSWORD: ${DATABASE_PASSWORD}
-            MYSQL_DATABASE: ${DATABASE_NAME}
-        volumes:
-            - ./strapi-data:/var/lib/mysql
-            #- ./data:/var/lib/mysql # if you want to use a bind folder
-        ports: - "172.17.0.1:3306:3306"
+        db:
+            image: elestio/postgres:latest
+            restart: always
+            environment:
+            POSTGRES_DB: ${DATABASE_NAME}
+            POSTGRES_USER: ${DATABASE_USERNAME}
+            POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+            PGDATA: /var/lib/postgresql/data
+            volumes:
+            - ./pgdata:/var/lib/postgresql/data
+            ports:
+            - "172.17.0.1:24538:5432"
 
 ### Environment variables
 
-|       Variable       |    Value (example)    |
-| :------------------: | :-------------------: |
-|       TEST_URL       | http://localhost:9930 |
-|     ADMIN_EMAIL      |    admin@gmail.com    |
-|    ADMIN_PASSWORD    |     your-password     |
-| SOFTWARE_VERSION_TAG |        latest         |
-|    DATABASE_NAME     |     your-db-name      |
-|    DATABASE_HOST     |       your-host       |
-|  DATABASE_USERNAME   |   your-db-username    |
-|  DATABASE_PASSWORD   |   your-db-password    |
-|      JWT_SECRET      |      jwt-secret       |
-|   ADMIN_JWT_SECRET   |   admin-jwt-secret    |
-|       APP_KEYS       |       app-keys        |
-|       NODE_ENV       |      production       |
+|      Variable       |   Value (example)   |
+| :-----------------: | :-----------------: |
+|   ADMIN_PASSWORD    |    your-password    |
+|     ADMIN_EMAIL     |   your@email.com    |
+|      BASE_URL       | https://your.domain |
+|      SMTP_HOST      |     172.17.0.1      |
+|      SMTP_PORT      |         25          |
+| SMTP_AUTH_STRATEGY  |        NONE         |
+|   SMTP_FROM_EMAIL   |  sender@email.com   |
+|   DATABASE_CLIENT   |      postgres       |
+|    DATABASE_PORT    |        5432         |
+|    DATABASE_NAME    |       strapi        |
+|  DATABASE_USERNAME  |      postgres       |
+|  DATABASE_PASSWORD  |    your-password    |
+|     JWT_SECRET      |    your-password    |
+|  ADMIN_JWT_SECRET   |    your-password    |
+|      APP_KEYS       |    your-password    |
+|      NODE_ENV       |     production      |
+|    DATABASE_HOST    |         db          |
+|   API_TOKEN_SALT    |    your-password    |
+| TRANSFER_TOKEN_SALT |    your-password    |
 
 # Maintenance
 

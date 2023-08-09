@@ -1,12 +1,12 @@
 version: "3"
 services:
   strapi:
-    image: elestio4test/strapi:latest
+    image: elestio/strapi:latest
     restart: always
     env_file: .env
     environment:
       DATABASE_CLIENT: ${DATABASE_CLIENT}
-      DATABASE_HOST: strapiDB
+      DATABASE_HOST: db
       DATABASE_PORT: ${DATABASE_PORT}
       DATABASE_NAME: ${DATABASE_NAME}
       DATABASE_USERNAME: ${DATABASE_USERNAME}
@@ -18,10 +18,9 @@ services:
     volumes:
       - ./config:/opt/app/config
       - ./src:/opt/app/src
-      - ./package.json:/opt/package.json
-      - ./yarn.lock:/opt/yarn.lock
       - ./.env:/opt/app/.env
       - ./public/uploads:/opt/app/public/uploads
+      - ./entrypoint.sh:/opt/app/entrypoint.sh
     ports:
       - "172.17.0.1:9930:1337"
     depends_on:
