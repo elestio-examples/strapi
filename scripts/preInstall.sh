@@ -1,6 +1,7 @@
 #set env vars
 #set -o allexport; source .env; set +o allexport;
 
+chmod +x ./entrypoint.sh
 
 cat <<EOT > ./servers.json
 {
