@@ -2,6 +2,7 @@ version: "3"
 services:
   strapi:
     image: elestio/strapi:${SOFTWARE_VERSION_TAG}
+    container_name: strapi    
     restart: always
     env_file: .env
     environment:
@@ -29,6 +30,7 @@ services:
   db:
     image: elestio/postgres:latest
     restart: always
+    container_name: postgres
     environment:
       POSTGRES_DB: ${DATABASE_NAME}
       POSTGRES_USER: ${DATABASE_USERNAME}
@@ -41,6 +43,7 @@ services:
 
   pgadmin4:
     image: dpage/pgadmin4:latest
+    container_name: pgadmin4    
     restart: always
     environment:
       PGADMIN_DEFAULT_EMAIL: ${ADMIN_EMAIL}
