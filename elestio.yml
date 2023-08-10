@@ -22,6 +22,8 @@ ports:
     targetPort: "24538"
     public: true
 environments:
+  - key: "SOFTWARE_VERSION_TAG"
+    value: "latest"
   - key: "ADMIN_PASSWORD"
     value: "random_password"
   - key: "ADMIN_EMAIL"
@@ -60,7 +62,6 @@ environments:
     value: "random_password"
   - key: "NODE_ENV"
     value: "production"
-
 config:
   runTime: "dockerCompose"
   version: ""
@@ -83,7 +84,6 @@ webUI:
     label: "Strapi Admin"
     login: "[ADMIN_EMAIL]"
     password: "[ADMIN_PASSWORD]"
-
   - url: "https://[CI_CD_DOMAIN]:8443"
     label: "PgAdmin"
     login: "[ADMIN_EMAIL]"
