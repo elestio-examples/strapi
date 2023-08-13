@@ -22,7 +22,7 @@ services:
       - ./public/uploads:/opt/app/public/uploads
       - ./entry/entrypoint.sh:/opt/app/entry/entrypoint.sh
     ports:
-      - "172.17.0.1:9930:1337"
+      - "172.17.0.1:9940:1337"
     depends_on:
       - db
 
