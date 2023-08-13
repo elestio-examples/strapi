@@ -53,7 +53,7 @@ Here are some example snippets to help you get started creating a container.
     version: "3"
     services:
         strapi:
-            image: elestio4test/strapi:latest
+            image: elestio4test/strapi-production:latest
             restart: always
             env_file: .env
             environment:
