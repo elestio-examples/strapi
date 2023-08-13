@@ -1,7 +1,7 @@
 version: "3"
 services:
   strapi:
-    image: elestio4test/strapi:${SOFTWARE_VERSION_TAG}
+    image: elestio4test/strapi-development:${SOFTWARE_VERSION_TAG}
     restart: always
     env_file: .env
     environment:

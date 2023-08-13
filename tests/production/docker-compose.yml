@@ -1,0 +1,44 @@
+version: "3"
+services:
+  strapi:
+    image: elestio4test/strapi-production:${SOFTWARE_VERSION_TAG}
+    restart: always
+    env_file: .env
+    environment:
+      DATABASE_CLIENT: ${DATABASE_CLIENT}
+      DATABASE_HOST: ${DATABASE_HOST}
+      DATABASE_PORT: ${DATABASE_PORT}
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_USERNAME: ${DATABASE_USERNAME}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
+      ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET}
+      APP_KEYS: ${APP_KEYS}
+      NODE_ENV: ${NODE_ENV}
+    volumes:
+      - ./config:/opt/app/config
+      - ./src:/opt/app/src
+      - ./package.json:/opt/package.json
+      - ./yarn.lock:/opt/yarn.lock
+      - ./.env:/opt/app/.env
+      - ./public/uploads:/opt/app/public/uploads
+    ports:
+      - "172.17.0.1:9930:1337"
+    depends_on:
+      - strapiDB
+
+  strapiDB:
+    restart: always
+    env_file: .env
+    image: elestio/mysql:${SOFTWARE_VERSION_TAG}
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_USER: ${MYSQL_DATABASE_USERNAME}
+      MYSQL_ROOT_PASSWORD: ${DATABASE_PASSWORD}
+      MYSQL_PASSWORD: ${DATABASE_PASSWORD}
+      MYSQL_DATABASE: ${DATABASE_NAME}
+    volumes:
+      - ./strapi-data:/var/lib/mysql
+      #- ./data:/var/lib/mysql # if you want to use a bind folder
+    ports:
+      - "172.17.0.1:3306:3306"
