@@ -10,7 +10,9 @@ IFS="/"
 read -ra parts <<< "$pwd"
 folderName="${parts[-1]}"
 
-echo "folderName=$folderName" >> ./.env
+cat << EOT >> ./.env
+folderName=$folderName"
+EOT
 
 
 cd ./app && docker buildx build . --output type=docker,name=elestio4test/strapi-development:latest | docker load
