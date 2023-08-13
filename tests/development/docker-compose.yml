@@ -16,7 +16,7 @@ services:
       APP_KEYS: ${APP_KEYS}
       NODE_ENV: ${NODE_ENV}
     volumes:
-      - PATH_TO_CHANGE/config:/opt/app/config
+      - ${folderName}/config:/opt/app/config
       - ./src:/opt/app/src
       - ./env:/opt/app/env/
       - ./public/uploads:/opt/app/public/uploads

@@ -10,7 +10,7 @@ IFS="/"
 read -ra parts <<< "$pwd"
 folderName="${parts[-1]}"
 
-sed -i 's~PATH_TO_CHANGE~/opt/app/oss/temp/'"${folderName}"'~g' /opt/app/oss/temp/${folderName}/docker-compose.yml
+echo "folderName=$folderName" >> ./.env
 
 
 cd ./app && docker buildx build . --output type=docker,name=elestio4test/strapi-development:latest | docker load
