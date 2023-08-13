@@ -11,7 +11,8 @@ read -ra parts <<< "$pwd"
 folderName="${parts[-1]}"
 
 cat << EOT >> ./.env
-folderName=$folderName"
+
+folderName=$folderName
 EOT
 
 
