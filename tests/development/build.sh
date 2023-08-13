@@ -1,4 +1,6 @@
-yes | npx create-strapi-app@latest my-project --dbforce --no-run --dbclient=postgres --dbhost=db --dbport=5432 --dbname=strapi --dbusername=postgres --dbpassword=postgres
+yes | npx create-strapi-app@latest app --dbforce --no-run --dbclient=postgres --dbhost=db --dbport=5432 --dbname=strapi --dbusername=postgres --dbpassword=postgres
 
+cp ./.dockerignore ./app/.dockerignore
+cp ./Dockerfile ./app/Dockerfile
 
-cd ./my-project && docker buildx build . --output type=docker,name=elestio4test/strapi-development:latest | docker load
+cd ./app && docker buildx build . --output type=docker,name=elestio4test/strapi-development:latest | docker load
