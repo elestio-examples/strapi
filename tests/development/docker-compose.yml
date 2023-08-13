@@ -1,12 +1,13 @@
 version: "3"
 services:
   strapi:
-    image: elestio4test/strapi-development:${SOFTWARE_VERSION_TAG}
+    image: elestio/strapi-development:${SOFTWARE_VERSION_TAG}
+    container_name: strapi
     restart: always
     env_file: .env
     environment:
       DATABASE_CLIENT: ${DATABASE_CLIENT}
-      DATABASE_HOST: ${DATABASE_HOST}
+      DATABASE_HOST: db
       DATABASE_PORT: ${DATABASE_PORT}
       DATABASE_NAME: ${DATABASE_NAME}
       DATABASE_USERNAME: ${DATABASE_USERNAME}
@@ -18,27 +19,24 @@ services:
     volumes:
       - ./config:/opt/app/config
       - ./src:/opt/app/src
-      - ./package.json:/opt/package.json
-      - ./yarn.lock:/opt/yarn.lock
       - ./.env:/opt/app/.env
       - ./public/uploads:/opt/app/public/uploads
+      - ./entrypoint.sh:/opt/app/entrypoint.sh
     ports:
       - "172.17.0.1:9930:1337"
     depends_on:
-      - strapiDB
+      - db
 
-  strapiDB:
+  db:
+    image: elestio/postgres:latest
     restart: always
-    env_file: .env
-    image: elestio/mysql:${SOFTWARE_VERSION_TAG}
-    command: --default-authentication-plugin=mysql_native_password
+    container_name: postgres
     environment:
-      MYSQL_USER: ${MYSQL_DATABASE_USERNAME}
-      MYSQL_ROOT_PASSWORD: ${DATABASE_PASSWORD}
-      MYSQL_PASSWORD: ${DATABASE_PASSWORD}
-      MYSQL_DATABASE: ${DATABASE_NAME}
+      POSTGRES_DB: ${DATABASE_NAME}
+      POSTGRES_USER: ${DATABASE_USERNAME}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      PGDATA: /var/lib/postgresql/data
     volumes:
-      - ./strapi-data:/var/lib/mysql
-      #- ./data:/var/lib/mysql # if you want to use a bind folder
+      - ./pgdata:/var/lib/postgresql/data
     ports:
-      - "172.17.0.1:3306:3306"
+      - "172.17.0.1:24538:5432"
