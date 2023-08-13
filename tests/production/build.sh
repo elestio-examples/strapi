@@ -1,14 +1,3 @@
-pwd=$(pwd)
-IFS="/"
-read -ra parts <<< "$pwd"
-folderName="${parts[-1]}"
-
-cat << EOT >> /opt/app/oss/temp/$folderName/.env
-
-folderName=/opt/app/oss/temp/$folderName
-EOT
-
-
 yes | npx create-strapi-app@latest app --dbforce --no-run --dbclient=postgres --dbhost=db --dbport=5432 --dbname=strapi --dbusername=postgres --dbpassword=postgres
 
 cp ./.dockerignore ./app/.dockerignore
