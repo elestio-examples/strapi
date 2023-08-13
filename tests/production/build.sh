@@ -5,8 +5,4 @@ cp ./Dockerfile ./app/Dockerfile
 cp ./.env ./app/.env
 cp ./entrypoint.sh ./app/entrypoint.sh
 
-yarn install
-
-
-
-cd ./app && docker buildx build . --output type=docker,name=elestio4test/strapi-development:latest | docker load
+cd ./app && touch yarn.lock && yarn install && docker buildx build . --output type=docker,name=elestio4test/strapi-development:latest | docker load && cd ..
