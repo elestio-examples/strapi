@@ -5,5 +5,4 @@ cp ./Dockerfile ./app/Dockerfile
 cp ./.env ./app/.env
 cp ./entrypoint.sh ./app/entrypoint.sh
 
-# cd ./app && docker buildx build . --output type=docker,name=elestio4test/strapi-development:latest | docker load
-cd ./app && docker build . -t elestio4test/strapi-development:latest
+cd ./app && docker buildx build . --output type=docker,name=elestio4test/strapi-development:latest | docker load
