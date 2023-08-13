@@ -10,4 +10,5 @@ WORKDIR /opt/app
 COPY ./ .
 RUN yarn build
 EXPOSE 1337
-CMD ./entrypoint.sh && yarn start
+RUN chmod +x ./entrypoint.sh
+CMD ["/bin/bash", "-c", "./entrypoint.sh && yarn start"]

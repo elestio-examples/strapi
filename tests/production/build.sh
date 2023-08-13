@@ -2,6 +2,7 @@ yes | npx create-strapi-app@latest app --dbforce --no-run --dbclient=postgres --
 
 cp ./.dockerignore ./app/.dockerignore
 cp ./Dockerfile ./app/Dockerfile
-
+cp ./.env ./app/.env
+cp ./entrypoint.sh ./app/entrypoint.sh
 
 cd ./app && docker buildx build . --output type=docker,name=elestio4test/strapi-production:latest | docker load
