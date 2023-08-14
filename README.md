@@ -32,6 +32,8 @@ for example:
 
 **_step2:_** go to the entrypoint.sh, and paste your `yarn command` ⚠️One command per line⚠️
 
+**_step3:_** go back to Elestio Dashboard, Details tab, and click to Restart Stack
+
 # Production
 
 By default, you deploy a development version.

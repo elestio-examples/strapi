@@ -42,7 +42,9 @@ Create data folders with correct permissions
 
 Run the project with the following command
 
+    ./scripts/preInstall.sh
     docker-compose up -d
+    ./script/postInstall.sh
 
 You can access the Web UI at: `http://your-domain:9930`
 
@@ -53,7 +55,7 @@ Here are some example snippets to help you get started creating a container.
     version: "3"
     services:
         strapi:
-            image: elestio4test/strapi-production:latest
+            image: elestio4test/strapi-${NODE_ENV}:latest
             restart: always
             env_file: .env
             environment:
