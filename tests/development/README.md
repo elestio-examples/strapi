@@ -112,7 +112,7 @@ Here are some example snippets to help you get started creating a container.
 |     JWT_SECRET      |    your-password    |
 |  ADMIN_JWT_SECRET   |    your-password    |
 |      APP_KEYS       |    your-password    |
-|      NODE_ENV       |     production      |
+|      NODE_ENV       |     development     |
 |    DATABASE_HOST    |         db          |
 |   API_TOKEN_SALT    |    your-password    |
 | TRANSFER_TOKEN_SALT |    your-password    |
