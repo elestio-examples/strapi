@@ -1,6 +1,11 @@
 #set env vars
 #set -o allexport; source .env; set +o allexport;
 
+cat <<EOT > entrypoint.sh
+yarn add @strapi/provider-email-nodemailer
+
+EOT
+
 chmod +x ./entrypoint.sh
 
 cat <<EOT > ./servers.json

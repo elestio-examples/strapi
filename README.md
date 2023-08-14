@@ -26,17 +26,19 @@ You can open pgAdmin web UI here:
 
 You can install your plugins by adding `yarn command` in the `entrypoint.sh` file.
 
+for example:
+
+**_step1:_** go to the Tools tab, click on VS Code button, copy the password, and click on Access link, then paste the password
+
+**_step2:_** go to the entrypoint.sh, and paste your `yarn command` ⚠️One command per line⚠️
+
 # Production
 
 By default, you deploy a development version.
 You can easily switch between a production version or a development version like this:
 
-**_step1:_** update the Docker Conpose to indicate which version you want.
-Open Elestio dashboard > Service overview > click on UPDATE CONFIG button > Docker Compose tab
-update the current image `elestio/strapi-development` to `elestio/strapi-production` or revert
-
-**_step2:_** update the env var to indicate which version you want.
+**_step1:_** update the env var to indicate which version you want.
 Open Elestio dashboard > Service overview > click on UPDATE CONFIG button > ENV tab
 update the variable `NODE_ENV` from `development` to `production` or revert
 
-**_step3:_** click on Update & Restart button.
+**_step2:_** click on Update & Restart button.
