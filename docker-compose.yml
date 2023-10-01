@@ -27,7 +27,7 @@ services:
       - db
 
   db:
-    image: elestio/postgres:latest
+    image: elestio/postgres:16
     restart: always
     environment:
       POSTGRES_DB: ${DATABASE_NAME}
