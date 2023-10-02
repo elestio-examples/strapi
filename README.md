@@ -16,7 +16,7 @@ You can open Strapi UI here:
     email: [ADMIN_EMAIL]
     password: [ADMIN_PASSWORD]
 
-You can open pgAdmin web UI here:
+You can open the pgAdmin web UI here:
 
     URL: https://[CI_CD_DOMAIN]:8443
     email: [ADMIN_EMAIL]
@@ -24,22 +24,36 @@ You can open pgAdmin web UI here:
 
 # Plugins
 
-You can install your plugins by adding `yarn command` in the `entrypoint.sh` file.
+You can install your plugins by adding the `yarn command` in the `entrypoint.sh` file.
 
 for example:
 
-**_step1:_** go to the Tools tab, click on VS Code button, copy the password, and click on Access link, then paste the password
+**_step1:_** Go to the Tools tab, click on the VS Code button, copy the password, click on the Access link, then paste the password
 
-**_step2:_** go to the entrypoint.sh, and paste your `yarn command` ⚠️One command per line⚠️
+**_step2:_** Go to the entrypoint.sh, and paste your `yarn command` ⚠️One command per line⚠️ and at the end of the file add `yarn build`
 
-**_step3:_** go back to Elestio Dashboard, Details tab, and click to Restart Stack
+**_step3:_** Check to see if the file webpack.config.example.js is in the ./src/admin folder. If it isn't there, create the file `webpack.config.example.js` inside the `/src/admin` folder and add the code below.
+
+```
+'use strict';
+
+/* eslint-disable no-unused-vars */
+module.exports = (config, webpack) => {
+  // Note: we provide webpack above so you should not `require` it
+  // Perform customizations to webpack config
+  // Important: return the modified config
+  return config;
+};
+```
+
+**_step4:_** Go back to Elestio Dashboard, Details tab, and click to Restart Stack
 
 # Production
 
 By default, you deploy a development version.
 You can easily switch between a production version or a development version like this:
 
-**_step1:_** update the env var to indicate which version you want.
+**_step1:_** Update the env var to indicate which version you want.
 Open Elestio dashboard > Service overview > click on UPDATE CONFIG button > ENV tab
 update the variable `NODE_ENV` from `development` to `production` or revert
 
