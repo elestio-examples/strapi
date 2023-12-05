@@ -39,8 +39,8 @@ services:
     ports:
       - "172.17.0.1:24538:5432"
 
-  pgadmin:
-    image: dpage/pgadmin:latest
+  pgadmin4:
+    image: dpage/pgadmin4:latest
     restart: always
     environment:
       PGADMIN_DEFAULT_EMAIL: ${ADMIN_EMAIL}
@@ -49,4 +49,4 @@ services:
     ports:
       - "172.17.0.1:8089:8080"
     volumes:
-      - ./servers.json:/pgadmin/servers.json
+      - ./servers.json:/pgadmin4/servers.json
