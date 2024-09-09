@@ -30,6 +30,8 @@ environments:
     value: "[EMAIL]"
   - key: "BASE_URL"
     value: "https://[CI_CD_DOMAIN]"
+  - key: "PUBLIC_URL"
+    value: "https://[CI_CD_DOMAIN]"
   - key: "SMTP_HOST"
     value: "172.17.0.1"
   - key: "SMTP_PORT"

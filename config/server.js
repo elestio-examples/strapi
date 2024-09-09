@@ -1,4 +1,6 @@
 module.exports = ({ env }) => ({
+  url: env('PUBLIC_URL', 'https://strapi.elestio.com'),
+  proxy: env.bool('IS_PROXIED', true),
   host: env("HOST", "0.0.0.0"),
   port: env.int("PORT", 1337),
   app: {
