@@ -63,7 +63,7 @@ environments:
   - key: "TRANSFER_TOKEN_SALT"
     value: "random_password8"
   - key: "NODE_ENV"
-    value: "development"
+    value: "production"
 config:
   runTime: "dockerCompose"
   version: ""
